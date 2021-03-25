@@ -1,7 +1,8 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react'
+import VttEditor from '@/containers/VttEditor'
 
 const App: FC = () => {
-    return <h1>VTT Editor</h1>
+  return <VttEditor />
 }
 
 export default App
