@@ -34,7 +34,6 @@ const VttEditor: FC<IVttEditorProps> = () => {
           source={source}
         />
         <Controls
-          mt={16}
           currentTime={currentTime}
           isPlay={isPlay}
           onClickPlayPause={onClickPlayPause}

@@ -1,12 +1,6 @@
 import React, { FC, useCallback } from 'react'
-import styled from 'styled-components'
 
-const CurrentTime = styled.span`
-  color: #898989;
-  padding: 4px;
-  border: 1px solid #efefef;
-  border-radius: 4px;
-`
+import CaptionTimestamp from '@/components/UI/CaptionTimestamp'
 
 interface IControlsProps {
   currentTime: number
@@ -31,7 +25,7 @@ const Controls: FC<IControlsProps> = (props) => {
       ) : (
         <button onClick={onClickPlay}>Play</button>
       )}
-      <CurrentTime>{currentTime}</CurrentTime>
+      <CaptionTimestamp time={currentTime} />
     </div>
   )
 }
