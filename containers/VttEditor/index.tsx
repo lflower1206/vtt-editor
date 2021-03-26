@@ -9,6 +9,7 @@ interface IVttEditorProps {}
 const VttEditor: FC<IVttEditorProps> = () => {
   const [source, setSource] = useState('')
   const [isPlay, setIsPlay] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0.0)
 
   const onPickUpFile = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -27,8 +28,17 @@ const VttEditor: FC<IVttEditorProps> = () => {
     <div>
       <Block p={16} width={1 / 2}>
         <input type="file" accept="video/*" onChange={onPickUpFile} />
-        <VideoPlayer isPlay={isPlay} source={source} />
-        <Controls isPlay={isPlay} onClickPlayPause={onClickPlayPause} />
+        <VideoPlayer
+          isPlay={isPlay}
+          onCurrentTimeUpdate={setCurrentTime}
+          source={source}
+        />
+        <Controls
+          mt={16}
+          currentTime={currentTime}
+          isPlay={isPlay}
+          onClickPlayPause={onClickPlayPause}
+        />
       </Block>
     </div>
   )
