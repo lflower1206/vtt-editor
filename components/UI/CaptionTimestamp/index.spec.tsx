@@ -7,6 +7,6 @@ describe('CaptionTimestamp', () => {
   it('should render caption timestamp by given seconds', () => {
     const com = render(<CaptionTimestamp time={1.1} />)
 
-    expect(com.getByText('1.1')).toBeInTheDocument()
+    expect(com.getByText('00:00:01.100')).toBeInTheDocument()
   })
 })

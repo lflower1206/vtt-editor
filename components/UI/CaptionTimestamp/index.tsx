@@ -7,13 +7,18 @@ const CurrentTime = styled.span`
   border: 1px solid #efefef;
   border-radius: 4px;
 `
+const formatTimestamp = (seconds: number): string => {
+  return new Date(seconds * 1000).toISOString().slice(11, 23)
+}
 
 interface ICaptionTimestampProps {
   time: number
 }
 const CaptionTimestamp: FC<ICaptionTimestampProps> = (props) => {
   const { time } = props
-  return <CurrentTime>{time}</CurrentTime>
+  const timestamp = formatTimestamp(time)
+
+  return <CurrentTime>{timestamp}</CurrentTime>
 }
 
 export default CaptionTimestamp
