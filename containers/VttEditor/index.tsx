@@ -2,11 +2,14 @@ import React, { ChangeEvent, FC, useCallback, useState } from 'react'
 
 import Block from '@/components/UI/Block'
 import VideoPlayer from '@/components/VideoPlayer'
+import Controls from '@/components/VideoPlayer/Controls'
 
 interface IVttEditorProps {}
 
 const VttEditor: FC<IVttEditorProps> = () => {
   const [source, setSource] = useState('')
+  const [isPlay, setIsPlay] = useState(false)
+
   const onPickUpFile = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader()
@@ -18,12 +21,14 @@ const VttEditor: FC<IVttEditorProps> = () => {
       reader.readAsDataURL(event.target.files[0])
     }
   }, [])
+  const onClickPlayPause = useCallback(setIsPlay, [])
 
   return (
     <div>
       <Block p={16} width={1 / 2}>
         <input type="file" accept="video/*" onChange={onPickUpFile} />
-        <VideoPlayer source={source} />
+        <VideoPlayer isPlay={isPlay} source={source} />
+        <Controls isPlay={isPlay} onClickPlayPause={onClickPlayPause} />
       </Block>
     </div>
   )

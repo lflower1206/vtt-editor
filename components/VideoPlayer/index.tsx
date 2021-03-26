@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { createRef, FC, useEffect } from 'react'
 import styled from 'styled-components'
 
 const Video = styled.video`
@@ -6,12 +6,18 @@ const Video = styled.video`
 `
 
 interface IVideoPlayerProps {
+  isPlay: boolean
   source: string
 }
 const VideoPlayer: FC<IVideoPlayerProps> = (props) => {
-  const { source } = props
+  const videoRef = createRef<HTMLVideoElement>()
+  const { isPlay, source } = props
 
-  return source ? <Video src={source} /> : null
+  useEffect(() => {
+    isPlay ? videoRef.current?.play() : videoRef.current?.pause()
+  }, [isPlay])
+
+  return source ? <Video ref={videoRef} src={source} /> : null
 }
 
 export default VideoPlayer
